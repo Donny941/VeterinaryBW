@@ -17,7 +17,7 @@ namespace Veterinary.Controllers
         {
             _animalService = animalService;
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> GetAllAnimals()
         {
