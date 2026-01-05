@@ -6,6 +6,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Veterinary.Models;
 using Veterinary.Models.Data;
+using Veterinary.Services;
+using Veterinary.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -100,6 +102,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 var app = builder.Build();
 
@@ -118,5 +122,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        await DbSeeder.SeedRoleAndUser(services);
+    }catch(Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex,"error in CreateScope");
+    }
+}
 
 app.Run();
