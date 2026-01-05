@@ -10,6 +10,6 @@ namespace Veterinary.Models
 
         [Required]
         [MaxLength(50)]
-        public string Role { get; set; } = string.Empty; // "Vet" or "Pharmacist"
+        public string Role { get; set; } = string.Empty;
     }
 }

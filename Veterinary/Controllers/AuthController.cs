@@ -22,21 +22,25 @@ namespace Veterinary.Controllers
         {
             _authService = authService;
         }
+
         [HttpPost("register")]
-    public async Task<ActionResult> Register([FromBody] RegisterDto registerRequest)
+        public async Task<ActionResult> Register([FromBody] RegisterDto registerRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
             var result = await _authService.RegisterAsync(registerRequest);
-            if(result == null)
+
+            if (result == null)
             {
-                return BadRequest(new {message="Username or Email already exist"});
+                return BadRequest(new { message = "Username or Email already exist" });
             }
             return Ok(result);
         }
-        [AllowAnonymous]
+
+
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginDto loginRequest)
         {
@@ -44,7 +48,9 @@ namespace Veterinary.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             var result = await _authService.LoginAsync(loginRequest);
+
             if (result == null)
             {
                 return BadRequest(new { message = "Invalid Username or Email" });

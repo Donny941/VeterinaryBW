@@ -40,6 +40,8 @@ namespace Veterinary.Models
 
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
+        public bool IsDeleted { get; set; }
+
         // Navigation properties
         public ICollection<Visit> Visits { get; set; } = new List<Visit>();
         public Recovery? Recovery { get; set; }

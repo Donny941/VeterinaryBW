@@ -103,6 +103,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAnimalService, AnimalService>();
 
 
 var app = builder.Build();
@@ -122,16 +123,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
         await DbSeeder.SeedRoleAndUser(services);
-    }catch(Exception ex)
+    }
+    catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex,"error in CreateScope");
+        logger.LogError(ex, "error in CreateScope");
     }
 }
 
