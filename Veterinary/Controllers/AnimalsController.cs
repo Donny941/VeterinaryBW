@@ -92,13 +92,15 @@ namespace Veterinary.Controllers
 
             return Ok(message);
         }
-        [AllowAnonymous]
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            return Ok("funziona");
-        }
-        
+
+
+        //[AllowAnonymous]
+        //[HttpGet("test")]
+        //public IActionResult Test()
+        //{
+        //    return Ok("funziona");
+        //}
+
 
 
     }
