@@ -39,11 +39,11 @@ namespace Veterinary.Controllers
             return Ok(animals);
         }
 
-        [HttpGet("{microchipNumber}")]
+        [HttpGet("microchip/{microchipNumber}")]
         [AllowAnonymous] //Rendo pubblico anche per utenti non autenticati
-        public async Task<IActionResult> GetAnimalByMic(string microchip)
+        public async Task<IActionResult> GetAnimalByMic(string microchipNumber)
         {
-            var animals = await _animalService.GetAnimalByMicrochip(microchip);
+            var animals = await _animalService.GetAnimalByMicrochip(microchipNumber);
 
             if (animals == null)
             {
