@@ -53,7 +53,7 @@ namespace Veterinary.Controllers
             return Ok(animals);
         }
 
-
+        [Authorize(Roles = "Vet")]
         [HttpPost]
         public async Task<IActionResult> CreateAnimal([FromBody] CreateUpdateAnimalDto createAnimalDto)
         {
@@ -92,6 +92,13 @@ namespace Veterinary.Controllers
 
             return Ok(message);
         }
+        [AllowAnonymous]
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok("funziona");
+        }
+        
 
 
     }

@@ -33,9 +33,13 @@ namespace Veterinary.Services
 
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role),
+                new Claim("role", user.Role),
                 new Claim(ClaimTypes.Name, user.FullName),
+<<<<<<< HEAD
                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+=======
+                new Claim(JwtRegisteredClaimNames.Jti, new Guid().ToString())
+>>>>>>> 39135e82a56660a3f0aae2cabb1a23abe491c21b
            };
 
             var token = new JwtSecurityToken(
