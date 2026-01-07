@@ -35,16 +35,16 @@ namespace Veterinary.Services
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("role", user.Role),
                 new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
            };
 
             var token = new JwtSecurityToken(
                 issuer: setting["Issuer"],
                 audience: setting["Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(
-                int.Parse(setting["ExpirationMinutes"]!)),//GUARDA QUIIIIIIIIIIIII
+                notBefore: DateTime.UtcNow,
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(setting["ExpirationMinutes"]!)),  // <-- ok ora ci siamo
                 signingCredentials: credentials);
+        
 
             return new JwtSecurityTokenHandler().WriteToken(token);
 
