@@ -20,7 +20,6 @@ namespace Veterinary.Services
         {
             var visitForm = new Visit
             {
-                
                 AnimalId = visit.AnimalId,
                 VisitDate = visit.VisitDate,
                 ObjectiveExamination = visit.ObjectiveExamination,
@@ -38,11 +37,11 @@ namespace Veterinary.Services
                 AnimalId = visitForm.AnimalId,
                 AnimalName = visitForm.Animal.Name
             };
-            
+
         }
         public async Task<VisitDto> UpdateVisitAsync(CreateUpdateVisitDto visitDto, int id)
         {
-            var visitForm = _context.Visits.Include(v=>v.Animal)
+            var visitForm = _context.Visits.Include(v => v.Animal)
               .FirstOrDefault(v => v.Id == id);
 
             if (visitForm == null)
@@ -77,13 +76,13 @@ namespace Veterinary.Services
                 AnimalId = v.AnimalId,
                 AnimalName = v.Animal.Name
             }).ToListAsync();
-                
+
         }
 
         public async Task<IEnumerable<VisitDto>> GetAnimalVisitHistoryAsync(int animalId)
         {
 
-            return await _context.Visits.Where(v=>v.AnimalId == animalId).Include(v => v.Animal).Select(v => new VisitDto
+            return await _context.Visits.Where(v => v.AnimalId == animalId).Include(v => v.Animal).Select(v => new VisitDto
             {
                 Id = v.Id,
                 VisitDate = v.VisitDate,
@@ -113,7 +112,7 @@ namespace Veterinary.Services
 
         public async Task<IEnumerable<VisitDto>> GetByNameAsync(string name)
         {
-            return await _context.Visits.Where(v=>v.Animal.Name==name).
+            return await _context.Visits.Where(v => v.Animal.Name == name).
                  Include(v => v.Animal).
                  Select(v => new VisitDto
                  {
@@ -124,9 +123,9 @@ namespace Veterinary.Services
                      AnimalId = v.AnimalId,
                      AnimalName = v.Animal.Name
                  }).ToListAsync();
-            
 
-            
+
+
         }
 
     }

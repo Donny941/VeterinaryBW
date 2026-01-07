@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Veterinary.Models
+namespace Veterinary.Models.Dto_s
 {
-    public class Product
+    public class CreateUpdateProductDto
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
@@ -23,16 +19,14 @@ namespace Veterinary.Models
         [MaxLength(500)]
         public string Uses { get; set; } = string.Empty;
 
+        [Required]
         public bool IsMedicine { get; set; }
 
         [MaxLength(20)]
         public string? CabinetCode { get; set; }
 
-        [Column(TypeName = "decimal(10,2)")]
+        [Required]
         public decimal Price { get; set; }
-
         public bool InStock { get; set; }
-
-        public ICollection<Sale> Sales { get; set; } = new List<Sale>();
     }
 }
