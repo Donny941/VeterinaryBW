@@ -94,7 +94,7 @@ namespace Veterinary.Services
         public async Task<IEnumerable<ProductDto>> GetAllProductAsync()
         {
             return await _context.Products
-              .Where(p => !p.InStock)
+              .Where(p => p.InStock)
               .Select(p => new ProductDto
               {
                   Id = p.Id,

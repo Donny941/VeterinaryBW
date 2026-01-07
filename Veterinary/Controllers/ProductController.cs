@@ -82,7 +82,7 @@ namespace Veterinary.Controllers
             return Ok(product);
         }
 
-        [HttpGet("{medicines}")]
+        [HttpGet("medicines")]
         [Authorize(Roles = "Vet, Ph")]
         public async Task<IActionResult> GetMedicine()
         {
@@ -91,7 +91,7 @@ namespace Veterinary.Controllers
             return Ok(product);
         }
 
-        [HttpGet("{food}")]
+        [HttpGet("food")]
         [Authorize(Roles = "Vet, Ph")]
         public async Task<IActionResult> GetFood()
         {
@@ -100,7 +100,7 @@ namespace Veterinary.Controllers
             return Ok(product);
         }
 
-        [HttpGet("{id}/location")]
+        [HttpGet("location")]
         [Authorize(Roles = "Ph")]
         public async Task<IActionResult> GetMedicineLocation(int productId)
         {
