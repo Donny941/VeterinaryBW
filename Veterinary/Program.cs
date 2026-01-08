@@ -107,6 +107,7 @@ builder.Services.AddScoped<IAnimalService, AnimalService>();
 builder.Services.AddScoped<IVisitInterface, VisitService>();
 builder.Services.AddScoped<IProductInterface, ProductService>();
 builder.Services.AddScoped<ISaleInterface, SaleService>();
+builder.Services.AddScoped<IRecoveryInterface, RecoveryService>();
 
 
 
