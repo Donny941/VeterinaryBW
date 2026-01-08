@@ -1,29 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Veterinary.Models
+namespace Veterinary.Models.Dto_s
 {
-    public class Sale
+    public class CreateUpdateSaleDto
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         public DateTime SaleDate { get; set; } = DateTime.Now;
-
         [Required]
         [MaxLength(16)]
         public string ClientTaxCode { get; set; } = string.Empty;//codice fiscale x detrazione tasse(?)
-
         [MaxLength(50)]
         public string? PrescriptionNumber { get; set; }
-
         [Required]
         public int ProductId { get; set; }
-
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; } = null!;
-
+        [Required]
         public int Quantity { get; set; } = 1;
     }
 }

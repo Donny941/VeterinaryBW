@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Veterinary.Models
+namespace Veterinary.Models.Dto_s
 {
-    public class Sale
+    public class SaleDto
     {
         [Key]
         public int Id { get; set; }
@@ -20,9 +20,6 @@ namespace Veterinary.Models
 
         [Required]
         public int ProductId { get; set; }
-
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; } = null!;
 
         public int Quantity { get; set; } = 1;
     }
