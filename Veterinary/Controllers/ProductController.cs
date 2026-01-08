@@ -39,13 +39,19 @@ namespace Veterinary.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+            try
+            {
 
             var product = await _productService.UpdateProductAsync(id, updateProductDto);
-
-            if (product is null)
-                return NotFound(new { message = "Product not Found" });
-
             return Ok(product);
+            }
+            catch { 
+            
+                return NotFound(new { message = "Product not Found" });
+            }
+
+            
+
         }
 
         [HttpDelete("{id}")]

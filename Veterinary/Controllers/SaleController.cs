@@ -35,11 +35,18 @@ namespace Veterinary.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+            try
+            {
             var bill = await _saleService.UpdateSaleAsync(id, updateSaleDto);
-
-            if (bill is null)
+                return Ok(bill);
+            }
+            catch {
+            
                 return NotFound(new { message = "Sale not Found" });
-            return Ok(bill);
+            }
+
+            
+            
 
         }
 
@@ -51,7 +58,7 @@ namespace Veterinary.Controllers
             return Ok(bill);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("bill/{id}")]
         [Authorize(Roles = "Ph")]
         public async Task<IActionResult> GetSaleById(int id)
         {

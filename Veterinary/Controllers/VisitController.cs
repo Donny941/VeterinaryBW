@@ -33,8 +33,16 @@ namespace Veterinary.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+            try
+            {
             var visit = await _visitService.UpdateVisitAsync(updateVisitDto, id);
+                
             return Ok(visit);
+            }
+            catch
+            {
+               return NotFound(new { message = "Id Vist Not Found" });
+            }
         }
 
 

@@ -70,6 +70,7 @@ namespace Veterinary.Services
         public async Task<SaleDto> UpdateSaleAsync(int id, CreateUpdateSaleDto updateSaleDto)
         {
             var bill = await _context.Sales.FindAsync(id);
+            
 
             bill.SaleDate = updateSaleDto.SaleDate;
             bill.ClientTaxCode = updateSaleDto.ClientTaxCode;
